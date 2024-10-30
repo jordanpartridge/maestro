@@ -4,7 +4,10 @@
     "keywords": [
         "Jordan Partridge",
         "laravel",
-        "maestro"
+        "maestro",
+        "anthropic",
+        "ai",
+        "llm",
     ],
     "homepage": "https://github.com/jordanpartridge/maestro",
     "license": "MIT",
@@ -72,10 +75,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Jordan Partridge\\Maestro\\MaestroServiceProvider"
+                "JordanPartridge\\Maestro\\MaestroServiceProvider"
             ],
             "aliases": {
-                "Maestro": "Jordan Partridge\\Maestro\\Facades\\Maestro"
+                "Maestro": "JordanPartridge\\Maestro\\Facades\\Maestro"
             }
         }
     },
