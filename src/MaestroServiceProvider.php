@@ -2,9 +2,9 @@
 
 namespace JordanPartridge\Maestro;
 
+use JordanPartridge\Maestro\Commands\MaestroCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use JordanPartridge\Maestro\Commands\MaestroCommand;
 
 class MaestroServiceProvider extends PackageServiceProvider
 {
