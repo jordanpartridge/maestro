@@ -17,20 +17,21 @@ class Anthropic extends Connector
     /**
      * The default headers for every request made by the connector.
      *
-     * @throws InvalidArgumentException if Anthropic API key is not set
-     *
      * @return array<string, string>
+     *
+     * @throws InvalidArgumentException if Anthropic API key is not set
      */
     public function defaultHeaders(): array
     {
         $api_key = config('anthropic.api_key');
 
-        if (!$api_key) {
+        if (! $api_key) {
             throw new InvalidArgumentException('Anthropic API key not set');
         }
+
         return [
-            'x-api-key'         => $api_key,
-            'Content-Type'      => 'application/json',
+            'x-api-key' => $api_key,
+            'Content-Type' => 'application/json',
             'anthropic-version' => self::API_VERSION,
         ];
     }

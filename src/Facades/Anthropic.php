@@ -11,5 +11,4 @@ class Anthropic extends Facade
     {
         return AnthropicConnector::class;
     }
-
 }
