@@ -20,19 +20,19 @@ class Messages extends Request
      * @param string      $message
      * @param string      $role
      * @param string|null $model
-     * @param int         $maxTokens
+     * @param int         $max_tokens
      */
     public function __construct(
         public string $message,
         public string $role = 'user',
         public ?string $model = null,
-        public int    $maxTokens = 1024,
+        public int    $max_tokens = 1024,
     )
     {
         if (trim($message) === '') {
             throw new InvalidArgumentException('Message content cannot be empty');
         }
-        if ($maxTokens < 1 || $maxTokens > 4096) {
+        if ($this->max_tokens < 1 || $this->max_tokens > 4096) {
             throw new InvalidArgumentException('Max tokens must be between 1 and 4096');
         }
 
@@ -55,7 +55,7 @@ class Messages extends Request
     {
         return [
             'model'      => $this->model,
-            'max_tokens' => $this->maxTokens,
+            'max_tokens' => $this->max_tokens,
             'messages'   => [
                 [
                     'role'    => $this->role,
