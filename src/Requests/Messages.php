@@ -2,6 +2,7 @@
 
 namespace JordanPartridge\Maestro\Requests;
 
+use InvalidArgumentException;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
@@ -16,17 +17,31 @@ class Messages extends Request
     protected Method $method = Method::POST;
 
     /**
-     * @param string $message
-     * @param string $role
-     * @param string $model
+     * @param string      $message
+     * @param string      $role
+     * @param string|null $model
+     * @param int         $maxTokens
      */
     public function __construct(
         public string $message,
         public string $role = 'user',
-        public string $model = 'claude-3-5-sonnet-20241022',
-        public int $maxTokens = 1024,
+        public ?string $model = null,
+        public int    $maxTokens = 1024,
     )
-    {}
+    {
+        if (trim($message) === '') {
+            throw new InvalidArgumentException('Message content cannot be empty');
+        }
+        if ($maxTokens < 1 || $maxTokens > 4096) {
+            throw new InvalidArgumentException('Max tokens must be between 1 and 4096');
+        }
+
+        if (!in_array($role, ['user', 'assistant', 'system'])) {
+            throw new InvalidArgumentException('Invalid role specified');
+        }
+
+        $this->model = $model ?? config('maestro.anthropic.model', 'claude-3-5-sonnet-20241022');
+    }
 
     /**
      * @return string
@@ -39,9 +54,9 @@ class Messages extends Request
     public function defaultBody(): array
     {
         return [
-            'model'       => $this->model,
+            'model'      => $this->model,
             'max_tokens' => $this->maxTokens,
-            'messages'    => [
+            'messages'   => [
                 [
                     'role'    => $this->role,
                     'content' => $this->message,

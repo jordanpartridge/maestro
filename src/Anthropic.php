@@ -8,7 +8,7 @@ class Anthropic extends Connector
 {
     public function resolveBaseUrl(): string
     {
-        return config('anthropic.base_url');
+        return config('anthropic.base_url', 'https://api.anthropic.com/v1/');
     }
 
     public function defaultHeaders(): array
