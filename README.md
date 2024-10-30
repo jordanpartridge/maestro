@@ -52,7 +52,7 @@ php artisan vendor:publish --tag="maestro-views"
 ## Usage
 
 ```php
-$maestro = new Jordan Partridge\Maestro();
+$maestro = new JordanPartridge\Maestro();
 echo $maestro->echoPhrase('Hello, Jordan Partridge!');
 ```
 
