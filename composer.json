@@ -7,7 +7,7 @@
         "maestro",
         "anthropic",
         "ai",
-        "llm",
+        "llm"
     ],
     "homepage": "https://github.com/jordanpartridge/maestro",
     "license": "MIT",
